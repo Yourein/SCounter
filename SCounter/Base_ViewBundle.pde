@@ -30,4 +30,8 @@ abstract class ViewBundle {
     public String getAbbreviated() {
         return abbreviated;
     }
+
+    public void draw() {
+        view.draw();
+    }
 }
