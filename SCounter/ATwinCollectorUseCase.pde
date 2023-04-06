@@ -1,4 +1,4 @@
-class ATwinCollectorUseCase {
+class ATwinCollectorUseCase implements UseCase {
     private ATwinCollector collector;
 
     public ATwinCollectorUseCase(PApplet parent, String device){
