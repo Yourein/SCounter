@@ -23,6 +23,8 @@ class DataReceiver {
         return Integer.parseInt(res);
     }
 
+    // 1bitの変更毎にUpdateがemitされるので、
+    // XORで立つbitは高々1bitで、返り値の値は2^nになる
     public int fetchUpdate() {
         currentByte = readData();
         int diff = oldByte^currentByte;
