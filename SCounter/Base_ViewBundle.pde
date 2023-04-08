@@ -1,13 +1,12 @@
 abstract class ViewBundle {
     private DataView view;
-    private UseCase usecase;
     private String fullName = null, abbreviated = null;
 
-    public ViewBundle(DataView _view, UseCase _usecase) {
+    public ViewBundle(DataView _view) {
         construction(_view, _usecase, "", "");
     }
 
-    public ViewBundle(DataView _view, UseCase _usecase, String _fullName, String _abbreviated) {
+    public ViewBundle(DataView _view, String _fullName, String _abbreviated) {
         construction(_view, _usecase, _fullName, _abbreviated);
     }
 
