@@ -1,6 +1,12 @@
 import processing.serial.*;
 
-class DataReceiver {
+abstract class Receiver {
+    abstract public boolean newDataAvailable();
+    abstract protected int readData();
+    abstract public int fetchUpdate();
+}
+
+class DataReceiver extends Receiver {
     private Serial rx;
     private int oldByte = 127, currentByte = 127;
 
@@ -12,7 +18,7 @@ class DataReceiver {
         return rx.available() > 0;
     }
 
-    private int readData() {
+    protected int readData() {
         String res = "";
         while(true) {
             char buf = char(rx.read());

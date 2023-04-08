@@ -1,5 +1,5 @@
 abstract class DataCollector {
-    private DataReceiver receiver;
+    private Receiver receiver;
     protected int betCount = 0;
     protected int payCount = 0;
     protected int bigBonusCount = 0;
@@ -14,7 +14,8 @@ abstract class DataCollector {
     protected boolean inError = false;
 
     public DataCollector(PApplet parent, String device) {
-        receiver = new DataReceiver(parent, device);
+        // receiver = new DataReceiver(parent, device);
+        receiver = new DummyReceiver();
     }
 
     abstract protected void onS1Updated();
