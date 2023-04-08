@@ -1,3 +1,3 @@
 abstract class DataView {
-    public void draw();
+    abstract public void draw();
 }
