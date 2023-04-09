@@ -1,14 +1,20 @@
 ATwinCollectorUseCase aTwin;
+PImage img;
 
 void setup() {
   aTwin = new ATwinCollectorUseCase(this, "/dev/ttyACM0");
   size(1280, 720);
   textSize(32);
+  img = loadImage("./Assets/atwin.png");
 }
 
 void draw() {
   aTwin.fetchUpdate();
-  background(0);
+  if (img == null) background(255);
+  else image(img, 0, 0, width, height);
+  fill(0, 0, 0, 175);
+  rect(-1, -1, width, height);
+  fill(255);
   
   text(String.format("Start : %d      Total: %d", aTwin.getCurrentGameCount(), aTwin.getTotalGameCount()), 10, 50);
   text(String.format("Profit: %d", aTwin.getProfit()), 10, 100);

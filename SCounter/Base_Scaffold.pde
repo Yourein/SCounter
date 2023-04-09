@@ -1,6 +1,7 @@
 class Scaffold {
     private int screenWidth;
     private int screenHeight;
+    private int barHeight = 30;
     private int currentTab = 0;
     private ViewBundle tab1, tab2, tab3;
 
@@ -31,7 +32,7 @@ class Scaffold {
     }
 
     void draw() {
-        
+        // 先にHeaderなどを描画してからViewBundleを呼ぶ
     }
 
     void onClick() {
