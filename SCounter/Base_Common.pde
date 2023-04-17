@@ -27,3 +27,7 @@ boolean isMouseOverRect(float x1, float y1, float x2, float y2) {
     return x1 <= mouseX && mouseX <= x2 && y1 <= mouseY && mouseY <= y2;
 }
 
+@FunctionalInterface
+interface Callback<T> {
+    public void invoke(T x);
+}
