@@ -1,15 +1,15 @@
-class ProfitGraph {
-    private int xBegin, yBegin, viewWidth, viewHeight;
+class ProfitGraph extends Item {
+    private Point position;
+    private int viewWidth, viewHeight;
     private float lineYBegin;
     private float plotHorizontalPadding, plotVerticalPadding;
     private ArrayList<Integer> data = new ArrayList<Integer>();
     private final int n = 12000;
     private final int maxValue = 6000;
 
-    public ProfitGraph(int _xBegin, int _yBegin, int _width, int _height) {
-        xBegin = _xBegin;
-        yBegin = _yBegin;
-        lineYBegin = yBegin + (_height/2.0);
+    public ProfitGraph(Point pos, int _width, int _height) {
+        position = pos;
+        lineYBegin = position.x + (_height/2.0);
         viewWidth = _width;
         viewHeight = _height;
         plotHorizontalPadding = viewWidth/float(n);
@@ -21,6 +21,7 @@ class ProfitGraph {
     }
 
     void draw() {
+        float xBegin = position.x;
         stroke(255);
         strokeWeight(4);
         line(xBegin, lineYBegin, xBegin + viewWidth, lineYBegin);
