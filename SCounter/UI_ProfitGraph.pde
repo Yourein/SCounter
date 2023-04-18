@@ -1,15 +1,15 @@
 class ProfitGraph extends Item {
     private Point position;
-    private int viewWidth, viewHeight;
+    private float viewWidth, viewHeight;
     private float lineYBegin;
     private float plotHorizontalPadding, plotVerticalPadding;
     private ArrayList<Integer> data = new ArrayList<Integer>();
     private final int n = 12000;
     private final int maxValue = 6000;
 
-    public ProfitGraph(Point pos, int _width, int _height) {
+    public ProfitGraph(Point pos, float _width, float _height) {
         position = pos;
-        lineYBegin = position.x + (_height/2.0);
+        lineYBegin = position.y + (_height/2.0);
         viewWidth = _width;
         viewHeight = _height;
         plotHorizontalPadding = viewWidth/float(n);
@@ -20,21 +20,31 @@ class ProfitGraph extends Item {
         data.add(newData);
     }
 
-    void draw() {
-        float xBegin = position.x;
+    public void draw() {
+        fill(0, 0, 0, 100);
+        rect(position.x, position.y, position.x+viewWidth, position.y+viewHeight);
+
+        this.baseLine();
+        this.plot();
+    }
+
+    private void baseLine() {
         stroke(255);
         strokeWeight(4);
-        line(xBegin, lineYBegin, xBegin + viewWidth, lineYBegin);
+        line(position.x, lineYBegin, position.x + viewWidth, lineYBegin);
+    }
 
-        float lastx = xBegin, lasty = lineYBegin;
+    private void plot() {
+        float lastx = position.x, lasty = lineYBegin;
         stroke(255, 230, 50);
         strokeWeight(2);
         for (int i = 0; i < data.size(); i++) {
-            float currentX = min(xBegin + i*plotHorizontalPadding, xBegin + viewWidth);
+            float currentX = min(position.x + i*plotHorizontalPadding, position.x + viewWidth);
             float currentY = lineYBegin - min(data.get(i)*plotVerticalPadding, maxValue*plotVerticalPadding);
             line(lastx, lasty, currentX, currentY);
             lastx = currentX;
             lasty = currentY;
         }
+        strokeWeight(0);
     }
 }
