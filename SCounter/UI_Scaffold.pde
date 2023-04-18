@@ -55,7 +55,7 @@ class AppBar extends Item {
 
         fill(WhiteValue);
         textSize(NormalTextSize);
-        text(title, (width - txtWidth)/2.0, DefaultAppBarHeight - NormalTextSize/2.0);
+        text(title, (width - txtWidth)/2.0, DefaultAppBarHeight - NormalTextSize/3.0);
     }
 }
 
