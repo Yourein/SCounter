@@ -6,8 +6,8 @@ void setup() {
   aTwin = new ATwinCollectorUseCase(this, "/dev/ttyACM0");
   size(1280, 720);
   scaffold = new Scaffold();
-  scaffold.addContent(new DummyItem(), "Dummy", "DummyItem1");
-  scaffold.addContent(new DummyItem(), "Dummy", "DummyItem2");
+  scaffold.addContent(new DummyItem(), "DummyTitle1", "DummyItem1");
+  scaffold.addContent(new DummyItem(), "DummyTitle2", "DummyItem2");
 }
 
 void draw() {
