@@ -1,5 +1,5 @@
 final float DefaultBottomNavHeight = 60;
-final float DefaultAppBarHeight = 30;
+final float DefaultAppBarHeight = 60;
 
 final int WhiteValue = 255;
 final int GrayValue = 150;
