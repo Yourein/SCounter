@@ -2,10 +2,10 @@ class Scaffold extends InteractiveItem {
     private Point position = new Point(0, 0);
 
     private BottomNavigation bottomNavigation;
-    private Item topBar;
+    private ArrayList<Item> appBar;
     private ArrayList<View> content;
 
-    private int contentIndex = 1;
+    private int contentIndex = 0;
 
     public Scaffold() {
         bottomNavigation = new BottomNavigation(
@@ -13,13 +13,14 @@ class Scaffold extends InteractiveItem {
             (it) -> { contentIndex = it; }
         );
 
-        topBar = null; // TODO: Implement
-        
+        appBar = new ArrayList<Item>();
         content = new ArrayList<View>();
     }
 
     public void draw() {
         if (content.size() > 0) {
+            content.get(contentIndex).draw();
+            appBar.get(contentIndex).draw();
             bottomNavigation.draw();
         }
     }
@@ -30,7 +31,31 @@ class Scaffold extends InteractiveItem {
 
     public void addContent(View view, String title, String label) {
         content.add(view);
+        appBar.add(new AppBar(title));
         bottomNavigation.addTab(label);
+    }
+}
+
+class AppBar extends Item {
+    private Point position;
+    private String title;
+    private float txtWidth;
+    
+
+    public AppBar(String t) {
+        title = t;
+
+        textSize(NormalTextSize);
+        txtWidth = textWidth(title);
+    }
+
+    public void draw() {
+        fill(BlackValue);
+        rect(0, 0, width, DefaultAppBarHeight);
+
+        fill(WhiteValue);
+        textSize(NormalTextSize);
+        text(title, (width - txtWidth)/2.0, DefaultAppBarHeight - NormalTextSize/2.0);
     }
 }
 
