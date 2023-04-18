@@ -1,6 +1,5 @@
 ATwinCollectorUseCase aTwin;
 
-
 Scaffold scaffold;
 
 void setup() {
@@ -13,9 +12,9 @@ void setup() {
 
 void draw() {
   aTwin.fetchUpdate();
-  background(0);
+  background(WhiteValue);
   
-  fill(255);
+  fill(WhiteValue);
   // text(String.format("Start : %d      Total: %d", aTwin.getCurrentGameCount(), aTwin.getTotalGameCount()), 10, 50);
   // text(String.format("Profit: %d", aTwin.getProfit()), 10, 100);
   // text(String.format("Bonus : %d   Big+: %d   Middle: %d", aTwin.getAllBonusCount(), aTwin.getBigBonusCount(), aTwin.getMiddleBonusCount()), 10, 150);
