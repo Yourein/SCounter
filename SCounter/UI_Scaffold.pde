@@ -79,7 +79,6 @@ class BottomNavigation extends InteractiveItem {
         public void onEvent(Event kind) {
             if (kind == Event.onClicked) {
                 if (isMouseOverRect(textXBegin - 4, textYBegin - NormalTextSize - 2, textXBegin + txtWidth + 4, textYBegin + 2)) {
-                    println("onEvent");
                     action(kind);
                 }
             }
