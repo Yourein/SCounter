@@ -2,9 +2,9 @@ class ATwinContent extends InteractiveItem {
     private Point position;
     private ATwinCollectorUseCase useCase;
 
-    public ATwinContent(Point pos, String device) {
+    public ATwinContent(Point pos, PApplet parent, String device) {
         position = pos;
-        useCase = new ATwinCollectorUseCase(this, device);
+        useCase = new ATwinCollectorUseCase(parent, device);
     }
 
     public void draw() {
