@@ -54,8 +54,10 @@ class AppBar extends Item {
         rect(0, 0, width, DefaultAppBarHeight);
 
         fill(WhiteValue);
+        textFont(Bold);
         textSize(NormalTextSize);
-        text(title, (width - txtWidth)/2.0, DefaultAppBarHeight - NormalTextSize/3.0);
+        text(title, width/2.0, DefaultAppBarHeight/2.0 - TextHorizontalAdjustment);
+        textFont(Regular);
     }
 }
 
@@ -87,16 +89,19 @@ class BottomNavigation extends InteractiveItem {
         }
 
         public void draw(float tabWidth, boolean isTabActive) {
-            textXBegin = ((tabWidth - txtWidth)/2.0) + tabID*tabWidth;
-            textYBegin = height - (viewHeight - NormalTextSize);
+            textXBegin = tabWidth/2.0 + tabID*tabWidth;
+            textYBegin = height - viewHeight + viewHeight/2.0 - TextHorizontalAdjustment;
 
             fill(0);
             rect(tabID*tabWidth, height - viewHeight, tabID*tabWidth + tabWidth, height);
             fill(255);
 
-            textSize(NormalTextSize);
+            textFont(Light);
+            textSize(SmallTextSize);
             fill(isTabActive?WhiteValue:GrayValue);
             text(tabLabel, textXBegin, textYBegin);
+            textFont(Regular);
+            textSize(NormalTextSize);
 
             fill(255);
         }
