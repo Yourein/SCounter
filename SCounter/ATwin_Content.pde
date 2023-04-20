@@ -4,6 +4,10 @@ class ATwinContent extends InteractiveItem {
     
     private NullableImage bgImage;
     private ProfitGraph graph;
+    private DataCounter currentGameCounter;
+    private DataCounter totalGameCounter;
+    private DataCounter bigBonusCounter;
+    private DataCounter regBonusCounter;
 
     public ATwinContent(
         Point pos,
@@ -19,6 +23,13 @@ class ATwinContent extends InteractiveItem {
             width/2.0,
             height - DefaultBottomNavHeight - DefaultAppBarHeight
         );
+
+        currentGameCounter = new DataCounter(
+            new Point(0, DefaultAppBarHeight),
+            "現在",
+            width/2.0,
+            (height - DefaultAppBarHeight - DefaultBottomNavHeight)/4.0
+        );
         
         useCase = new ATwinCollectorUseCase(parent, device);
     }
@@ -32,6 +43,7 @@ class ATwinContent extends InteractiveItem {
         }
         else {
             bgImg();
+            currentGameCounter.draw();
             graph.draw();
         }
     }
@@ -45,7 +57,7 @@ class ATwinContent extends InteractiveItem {
     }
 
     private void bgImg() {
-        fill(0, 0, 0, 150);
+        fill(0, 0, 0, 200);
         bgImage.draw();
         rect(0, 0, width, height);
     }
