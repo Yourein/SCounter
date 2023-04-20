@@ -13,7 +13,7 @@ void setup() {
       "/dev/ttyACM0"
     ), 
     "A-SLOTツインエンジェルBREAK",
-    "DummyItem1"
+    "Device1"
   );
 
   /*
@@ -21,10 +21,10 @@ void setup() {
    */
   textAlign(CENTER, CENTER);
 
-  Regular = createFont("./font/NotoSansJP/NotoSansJP-Regular.ttf", 240, true);
-  Medium = createFont("./font/NotoSansJP/NotoSansJP-Medium.ttf", 240, true);
   Bold = createFont("./font/NotoSansJP/NotoSansJP-Bold.ttf", 240, true);
   Light = createFont("./font/NotoSansJP/NotoSansJP-Light.ttf", 240, true);
+  Medium = createFont("./font/NotoSansJP/NotoSansJP-Medium.ttf", 240, true);
+  Regular = createFont("./font/NotoSansJP/NotoSansJP-Regular.ttf", 240, true);
   textFont(Regular);
 }
 
