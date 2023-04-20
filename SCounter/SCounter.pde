@@ -17,7 +17,8 @@ void setup() {
   );
 
   /*
-   * DO NOT CHANGE textAlign ANYWHERE BUT ONLY HERE.
+   * SET textAlign to (CENTER, CENTER) BY DEFAULT.
+   * if you change textAlign, please reset textAlign to (CENTER, CETNER).
    */
   textAlign(CENTER, CENTER);
 
