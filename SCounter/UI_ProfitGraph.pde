@@ -21,8 +21,8 @@ class ProfitGraph extends Item {
     }
 
     public void draw() {
-        fill(0, 0, 0, 100);
-        rect(position.x, position.y, position.x+viewWidth, position.y+viewHeight);
+        // fill(0, 0, 0, 100);
+        // rect(position.x, position.y, position.x+viewWidth, position.y+viewHeight);
 
         this.baseLine();
         this.plot();
