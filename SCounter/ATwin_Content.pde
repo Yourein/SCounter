@@ -25,7 +25,7 @@ class ATwinContent extends InteractiveItem {
 
     public void draw() {
         if (useCase.inSetting()) {
-            settingScreen();   
+            settingScreen();
         }
         else if (useCase.inError()) {
             errorScreen();
