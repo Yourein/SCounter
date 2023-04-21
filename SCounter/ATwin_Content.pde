@@ -9,6 +9,8 @@ class ATwinContent extends InteractiveItem {
     private DataCounter bigBonusCounter;
     private DataCounter regBonusCounter;
 
+    private int lastGameCount = 0;
+
     public ATwinContent(
         Point pos,
         PApplet parent,
@@ -99,6 +101,16 @@ class ATwinContent extends InteractiveItem {
             }
             else {
                 useCase.fetchUpdate();
+
+                currentGameCounter.setValue(useCase.getCurrentGameCount());
+                totalGameCounter.setValue(useCase.getTotalGameCount());
+                bigBonusCounter.setValue(useCase.getBigBonusCount());
+                regBonusCounter.setValue(useCase.getMiddleBonusCount());
+
+                if (useCase.getTotalGameCount() != lastGameCount) {
+                    lastGameCount = useCase.getTotalGameCount();
+                    graph.push_back(useCase.getProfit());
+                }
             }
         }
     }
