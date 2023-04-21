@@ -21,8 +21,16 @@ class ProfitGraph extends Item {
     }
 
     public void draw() {
+        this.verticalAxis();
         this.horizontalAxis();
         this.plot();
+    }
+
+    private void verticalAxis() {
+        stroke(255);
+        strokeWeight(4);
+        line(position.x, position.y, position.x, position.y+viewHeight);
+        strokeWeight(0);
     }
 
     private void horizontalAxis() {
