@@ -45,7 +45,9 @@ class ProfitGraph extends Item {
         textFont(Light);
         textSize(TinyTextSize);
         for (int i = -5; i <= 5; i++) {
-            if (i == 0) continue;
+            if (i == 0) {
+                continue;
+            }
 
             float lineY = lineYBegin - i*1000*plotVerticalPadding;
             line(position.x, lineY, position.x+viewWidth, lineY);
