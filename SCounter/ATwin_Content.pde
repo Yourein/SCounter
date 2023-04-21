@@ -79,11 +79,11 @@ class ATwinContent extends InteractiveItem {
     }
 
     private void settingScreen() {
-        
+        // TODO!
     }
 
     private void errorScreen() {
-
+        // TODO!
     }
 
     private void bgImg() {
