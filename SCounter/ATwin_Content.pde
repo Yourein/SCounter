@@ -15,6 +15,8 @@ class ATwinContent extends InteractiveItem {
         String bgImgPath,
         String device
     ) {
+        float counterHeight = (height - DefaultAppBarHeight - DefaultBottomNavHeight)/4.0;
+
         position = pos;
         
         bgImage = new NullableImage(loadImage(bgImgPath));
@@ -29,7 +31,31 @@ class ATwinContent extends InteractiveItem {
             "現在",
             "G",
             width/2.0,
-            (height - DefaultAppBarHeight - DefaultBottomNavHeight)/4.0
+            counterHeight
+        );
+
+        totalGameCounter = new DataCounter(
+            new Point(0, DefaultAppBarHeight + counterHeight),
+            "累計",
+            "G",
+            width/2.0,
+            counterHeight
+        );
+
+        bigBonusCounter = new DataCounter(
+            new Point(0, DefaultAppBarHeight + counterHeight*2),
+            "Big Bonus",
+            "回",
+            width/2.0,
+            counterHeight
+        );
+
+        regBonusCounter = new DataCounter(
+            new Point(0, DefaultAppBarHeight + counterHeight*3),
+            "Middle Bonus",
+            "回",
+            width/2.0,
+            counterHeight
         );
         
         useCase = new ATwinCollectorUseCase(parent, device);
@@ -45,6 +71,9 @@ class ATwinContent extends InteractiveItem {
         else {
             bgImg();
             currentGameCounter.draw();
+            totalGameCounter.draw();
+            bigBonusCounter.draw();
+            regBonusCounter.draw();
             graph.draw();
         }
     }
