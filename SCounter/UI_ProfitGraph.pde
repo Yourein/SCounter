@@ -29,6 +29,28 @@ class ProfitGraph extends Item {
         stroke(255);
         strokeWeight(4);
         line(position.x, lineYBegin, position.x + viewWidth, lineYBegin);
+        strokeWeight(0);
+
+        stroke(255, 255, 255, 60);
+        strokeWeight(1);
+        textAlign(LEFT, CENTER);
+        textFont(Light);
+        textSize(TinyTextSize);
+        for (int i = -5; i <= 5; i++) {
+            if (i == 0) continue;
+
+            float lineY = lineYBegin - i*1000*plotVerticalPadding;
+            line(position.x, lineY, position.x+viewWidth, lineY);
+
+            if (i%2 == 0) {
+                text(i*1000, position.x + 5, lineY - 7);
+            }
+        }
+        textSize(NormalTextSize);
+        textFont(Regular);
+        textAlign(CENTER, CENTER);
+        stroke(255);
+        strokeWeight(0);
     }
 
     private void plot() {
