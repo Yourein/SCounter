@@ -21,11 +21,11 @@ class ProfitGraph extends Item {
     }
 
     public void draw() {
-        this.baseLine();
+        this.horizontalAxis();
         this.plot();
     }
 
-    private void baseLine() {
+    private void horizontalAxis() {
         stroke(255);
         strokeWeight(4);
         line(position.x, lineYBegin, position.x + viewWidth, lineYBegin);
