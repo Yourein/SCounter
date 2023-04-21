@@ -1,15 +1,16 @@
 class DataCounter extends Item {
     private Point position;
     private float viewWidth, viewHeight;
-    private String counterTitle;
+    private String counterTitle, counterUnit;
     private int counterValue = 0;
 
     private float viewTextHorizontalAdjustment;
     private float viewTextVerticalAdjustment;
 
-    public DataCounter(Point pos, String title, float w, float h) {
+    public DataCounter(Point pos, String title, String unit, float w, float h) {
         position = pos;
         counterTitle = title;
+        counterUnit = unit;
         viewWidth = w;
         viewHeight = h;
 

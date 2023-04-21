@@ -27,6 +27,7 @@ class ATwinContent extends InteractiveItem {
         currentGameCounter = new DataCounter(
             new Point(0, DefaultAppBarHeight),
             "現在",
+            "G",
             width/2.0,
             (height - DefaultAppBarHeight - DefaultBottomNavHeight)/4.0
         );
