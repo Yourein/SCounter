@@ -19,6 +19,11 @@ class DataCounter extends Item {
     }
 
     public void draw() {
+        this.title();
+        this.value();
+    }
+
+    private void title() {
         fill(255);
         textAlign(LEFT, CENTER);
         stroke(255, 0, 0);
@@ -31,6 +36,23 @@ class DataCounter extends Item {
         textAlign(CENTER, CENTER);
         strokeWeight(0);
         stroke(255);
+    }
+
+    private void value() {
+        fill(255);
+        textAlign(RIGHT, CENTER);
+        textFont(Bold);
+        textSize(TitleTextSize);
+
+        text(
+            String.format("%05d", counterValue) + " " + counterUnit,
+            position.x + viewWidth - viewTextHorizontalAdjustment,
+            position.y + viewHeight/2.0 - TextVerticalAdjustment
+        );
+
+        textSize(NormalTextSize);
+        textFont(Regular);
+        textAlign(CENTER, CENTER);
     }
 
     public void setValue(int value) {
