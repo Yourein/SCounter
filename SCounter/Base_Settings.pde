@@ -8,4 +8,6 @@ final int BlackValue = 0;
 final int TitleTextSize = 48;
 final int NormalTextSize = 36;
 final int SmallTextSize = 24;
+final int TinyTextSize = 20;
 final int TextHorizontalAdjustment = 7;
+final int TextVerticalAdjustment = 7;
