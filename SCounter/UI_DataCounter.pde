@@ -26,13 +26,19 @@ class DataCounter extends Item {
     private void title() {
         fill(255);
         textAlign(LEFT, CENTER);
+        textFont(Bold);
+        textSize(NormalTextSize);
         stroke(255, 0, 0);
         strokeWeight(10);
+
         text(
             counterTitle,
             position.x + viewTextHorizontalAdjustment,
             position.y + viewTextVerticalAdjustment
         );
+        
+        textFont(Regular);
+        textSize(NormalTextSize);
         textAlign(CENTER, CENTER);
         strokeWeight(0);
         stroke(255);
@@ -42,7 +48,7 @@ class DataCounter extends Item {
         fill(255);
         textAlign(RIGHT, CENTER);
         textFont(Bold);
-        textSize(TitleTextSize);
+        textSize(BigTextSize);
 
         text(
             String.format("%05d", counterValue) + " " + counterUnit,
@@ -50,8 +56,8 @@ class DataCounter extends Item {
             position.y + viewHeight/2.0 - TextVerticalAdjustment
         );
 
-        textSize(NormalTextSize);
         textFont(Regular);
+        textSize(NormalTextSize);
         textAlign(CENTER, CENTER);
     }
 
