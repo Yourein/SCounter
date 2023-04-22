@@ -90,7 +90,7 @@ class ATwinContent extends InteractiveItem {
 
     private void bgImg() {
         fill(0, 0, 0, 200);
-        bgImage.draw();
+        bgImage.draw(0, 0, width, height);
         rect(0, 0, width, height);
     }
 
