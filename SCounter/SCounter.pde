@@ -32,7 +32,8 @@ void setup() {
 void draw() {
   background(WhiteValue);
   fill(WhiteValue);
-  
+  scaffold.onEvent(Event.newFrame);
+
   scaffold.draw();
 }  
 
