@@ -27,6 +27,10 @@ class Scaffold extends InteractiveItem {
 
     public void onEvent(Event kind) {
         bottomNavigation.onEvent(kind);
+        
+        content.stream()
+            .filter((i) -> { return i instanceof Interactive; })
+            .forEach((i) -> { ((Interactive) i).onEvent(kind); });
     }
 
     public void addContent(View view, String title, String label) {
