@@ -4,20 +4,38 @@ class ProfitGraph extends Item {
     private float lineYBegin;
     private float plotHorizontalPadding, plotVerticalPadding;
     private ArrayList<Integer> data = new ArrayList<Integer>();
-    private final int n = 12000;
-    private final int maxValue = 6000;
+    
+    private int currentN = 200;
+    private int[] oldN = {100, 1000};
+    
+    private int currentMax = 200;
+    private int[] oldMax = {100, 100};
 
     public ProfitGraph(Point pos, float _width, float _height) {
         position = pos;
         lineYBegin = position.y + (_height/2.0);
         viewWidth = _width;
         viewHeight = _height;
-        plotHorizontalPadding = viewWidth/float(n);
-        plotVerticalPadding = _height/float(2*maxValue);
+        plotHorizontalPadding = viewWidth/float(currentN);
+        plotVerticalPadding = _height/float(2*currentMax);
     }
 
     public void push_back(int newData){
         data.add(newData);
+        
+        if (data.size() > currentN) {
+            oldN[0] = oldN[1];
+            oldN[1] = currentN;
+            currentN = oldN[0] + oldN[1];
+            plotHorizontalPadding = viewWidth/float(currentN);
+        }
+
+        if (newData > currentMax) {
+            oldMax[0] = oldMax[1];
+            oldMax[1] = currentMax;
+            currentMax = oldMax[0] + oldMax[1];
+            plotVerticalPadding = viewHeight/float(2*currentMax);
+        }
     }
 
     public void draw() {
@@ -44,16 +62,16 @@ class ProfitGraph extends Item {
         textAlign(LEFT, CENTER);
         textFont(Light);
         textSize(TinyTextSize);
-        for (int i = -5; i <= 5; i++) {
+        for (int i = -50; i <= 50; i++) {
             if (i == 0) {
                 continue;
             }
 
-            float lineY = lineYBegin - i*1000*plotVerticalPadding;
+            float lineY = lineYBegin - i*200*plotVerticalPadding;
             line(position.x, lineY, position.x+viewWidth, lineY);
 
             if (i%2 == 0) {
-                text(i*1000, position.x + 5, lineY - 7);
+                text(i*200, position.x + 5, lineY - 7);
             }
         }
         textSize(NormalTextSize);
@@ -69,7 +87,7 @@ class ProfitGraph extends Item {
         strokeWeight(2);
         for (int i = 0; i < data.size(); i++) {
             float currentX = min(position.x + i*plotHorizontalPadding, position.x + viewWidth);
-            float currentY = lineYBegin - min(data.get(i)*plotVerticalPadding, maxValue*plotVerticalPadding);
+            float currentY = lineYBegin - min(data.get(i)*plotVerticalPadding, currentMax*plotVerticalPadding);
             line(lastx, lasty, currentX, currentY);
             lastx = currentX;
             lasty = currentY;
