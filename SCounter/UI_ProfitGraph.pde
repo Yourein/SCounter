@@ -6,7 +6,7 @@ class ProfitGraph extends Item {
     private ArrayList<Integer> data = new ArrayList<Integer>();
     
     private int currentN = 200;
-    private int[] oldN = {100, 1000};
+    private int[] oldN = {100, 100};
     
     private int currentMax = 200;
     private int[] oldMax = {100, 100};
