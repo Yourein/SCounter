@@ -19,14 +19,8 @@ class DataReceiver extends Receiver {
     }
 
     protected int readData() {
-        String res = "";
-        while(true) {
-            char buf = char(rx.read());
-            if ('0' <= buf && buf <= '9') res += buf;
-            else if (buf == '\n') break;
-        }
-
-        return Integer.parseInt(res);
+        String res = rx.readStringUntil(10);
+        return int(res.charAt(0));
     }
 
     // 1bitの変更毎にUpdateがemitされるので、
