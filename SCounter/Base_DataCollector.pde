@@ -14,8 +14,8 @@ abstract class DataCollector {
     protected boolean inError = false;
 
     public DataCollector(PApplet parent, String device) {
-        // receiver = new DataReceiver(parent, device);
-        receiver = new DummyReceiver();
+        receiver = new DataReceiver(parent, device);
+        // receiver = new DummyReceiver();
     }
 
     abstract protected void onS1Updated();
