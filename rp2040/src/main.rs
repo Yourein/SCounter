@@ -65,6 +65,8 @@ fn setup() -> ! {
     //----------------------- FLAGS OR GLOBAL VARIABLES -------------------------
     let mut last_data: u8 = (0b1 << 7) - 1;
     let mut last_fetched = main_timer.get_counter();
+    let mut pushed = false;
+    let mut last_access = main_timer.get_counter();
     //--------------------- FLAGS OR GLOBAL VARIABLES END -----------------------
 
     loop {
@@ -73,9 +75,12 @@ fn setup() -> ! {
             let _ = serial.read(&mut buf[..]);
         }
 
-        if elapsed_n_millis(&main_timer.get_counter(), &last_fetched, 50) {
+        if pushed && elapsed_n_millis(&main_timer.get_counter(), &last_access, 20) {
+            pushed = false;
             access_led.set_high().unwrap();
+        }
 
+        if elapsed_n_millis(&main_timer.get_counter(), &last_fetched, 50) {
             let mut current_data: u8 = 0;
             current_data = current_data | (if p1.is_high().unwrap() { 1 } else { 0 });
             current_data = current_data | ((if p2.is_high().unwrap() { 1 } else { 0 }) << 1);
@@ -86,10 +91,13 @@ fn setup() -> ! {
             current_data = current_data | ((if p7.is_high().unwrap() { 1 } else { 0 }) << 6);
 
             if current_data ^ last_data != 0 {
-                access_led.set_low().unwrap();
                 let _ = serial.write(&[current_data, 13, 10]); // "${data}\r\n"
                 let _ = serial.flush(); // I don't need this flush actually?
                 last_data = current_data;
+                
+                access_led.set_low().unwrap();
+                pushed = true;
+                last_access = main_timer.get_counter();
             }
 
             last_fetched = main_timer.get_counter();
