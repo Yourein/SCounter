@@ -9,8 +9,9 @@ use rp_pico as bsp;
 use bsp::entry;
 use bsp::pac;
 use bsp::hal::watchdog::Watchdog;
+use bsp::hal::gpio::PinState;
 use crate::util::*;
-use embedded_hal::digital::v2::InputPin;
+use embedded_hal::digital::v2::{InputPin, OutputPin};
 use usbd_serial::SerialPort;
 use usb_device::{class_prelude::*, prelude::*};
 
@@ -58,17 +59,25 @@ fn setup() -> ! {
     let p5 = pins.gpio21.into_floating_input();
     let p6 = pins.gpio22.into_floating_input();
     let p7 = pins.gpio23.into_floating_input();
+    let mut access_led = pins.gpio24.into_push_pull_output_in_state(PinState::High);
     //--------------------- SETUP END --------------------------
     
     //----------------------- FLAGS OR GLOBAL VARIABLES -------------------------
     let mut last_data: u8 = (0b1 << 7) - 1;
     let mut last_fetched = main_timer.get_counter();
+    let mut pushed = false;
+    let mut last_access = main_timer.get_counter();
     //--------------------- FLAGS OR GLOBAL VARIABLES END -----------------------
 
     loop {
         if usb_dev.poll(&mut [&mut serial]) {
             let mut buf = [0u8; 64];
             let _ = serial.read(&mut buf[..]);
+        }
+
+        if pushed && elapsed_n_millis(&main_timer.get_counter(), &last_access, 20) {
+            pushed = false;
+            access_led.set_high().unwrap();
         }
 
         if elapsed_n_millis(&main_timer.get_counter(), &last_fetched, 50) {
@@ -85,6 +94,10 @@ fn setup() -> ! {
                 let _ = serial.write(&[current_data, 13, 10]); // "${data}\r\n"
                 let _ = serial.flush(); // I don't need this flush actually?
                 last_data = current_data;
+                
+                access_led.set_low().unwrap();
+                pushed = true;
+                last_access = main_timer.get_counter();
             }
 
             last_fetched = main_timer.get_counter();
