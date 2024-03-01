@@ -30,7 +30,7 @@ class ProfitGraph extends Item {
             plotHorizontalPadding = viewWidth/float(currentN);
         }
 
-        if (newData > currentMax) {
+        if (abs(newData) > currentMax) {
             oldMax[0] = oldMax[1];
             oldMax[1] = currentMax;
             currentMax = oldMax[0] + oldMax[1];
