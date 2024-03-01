@@ -37,11 +37,11 @@ class Bio7Collector extends DataCollector {
     }
 
     protected void onS3Updated() {
-        //バイオ7の3番はMBカウントではないが、内部的にMBとして代用
-        inMiddleBonus = !inMiddleBonus;
+        //バイオ7の3番はBBカウントではないが、内部的にBBとして代用
+        inBigBonus = !inBigBonus;
         
-        if (inMiddleBonus) {
-            middleBonusCount++;
+        if (inBigBonus) {
+            bigBonusCount++;
         }
         else {
             resetCurrentGameCount();
@@ -49,11 +49,11 @@ class Bio7Collector extends DataCollector {
     }
 
     protected void onS4Updated() {
-        //バイオ7の4番はBBカウントではないが、内部的にBBとして代用
-        inBigBonus = !inBigBonus;
+        //バイオ7の4番はMBカウントではないが、内部的にMBとして代用
+        inMiddleBonus = !inMiddleBonus;
 
-        if (inBigBonus) {
-            bigBonusCount++;
+        if (inMiddleBonus) {
+            middleBonusCount++;
         }
         else {
             resetCurrentGameCount();
